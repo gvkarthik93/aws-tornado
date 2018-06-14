@@ -1,11 +1,16 @@
+import tornado.ioloop
 import tornado.web
-import tornado.wsgi
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
         self.write("Hello, world")
 
-tornado_app = tornado.web.Application([
-    (r"/", MainHandler),
-])
-application = tornado.wsgi.WSGIAdapter(tornado_app)
+def make_app():
+    return tornado.web.Application([
+        (r"/", MainHandler),
+    ])
+
+if __name__ == "__main__":
+    app = make_app()
+    app.listen(80)
+    tornado.ioloop.IOLoop.current().start()
