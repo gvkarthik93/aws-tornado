@@ -3,7 +3,7 @@ import tornado.web
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
-        self.write("Hello, world")
+        self.render("./index.html")
 
 def make_app():
     return tornado.web.Application([
@@ -13,4 +13,5 @@ def make_app():
 if __name__ == "__main__":
     app = make_app()
     app.listen(8081)
+    print ("Running server on port: 8081")
     tornado.ioloop.IOLoop.current().start()
